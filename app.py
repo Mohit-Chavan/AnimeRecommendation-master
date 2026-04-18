@@ -8,6 +8,10 @@ from sklearn.metrics.pairwise import cosine_similarity
 import os
 from nltk.stem.porter import PorterStemmer
 import re
+import nltk 
+nltk.download('punkt', quiet=True)
+nltk.download('stopwords', quiet=True)
+nltk.download('punkt_tab', quiet=True)
 
 app = FastAPI()
 
@@ -54,7 +58,7 @@ try:
     print(f"✓ Loaded {len(data)} anime entries")
 except FileNotFoundError:
     print("❌ ERROR: anime.csv not found!")
-    exit()
+    data = pd.DataFrame() 
 
 # Prepare data
 required_cols = ['anime_id', 'title', 'genres', 'themes', 'studios', 'producers', 'main_picture']
